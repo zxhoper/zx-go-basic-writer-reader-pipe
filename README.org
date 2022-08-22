@@ -1,1 +1,7 @@
-#
+#+TITLE:Go Basic Reader Wrider Pipe
+- https://www.youtube.com/watch?v=LHZ2CAZE6Gs&t=693
+
+* justforfunc #19: mastering io.Pipes
+
+
+
