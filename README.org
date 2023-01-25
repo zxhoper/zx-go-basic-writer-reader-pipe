@@ -5,3 +5,42 @@
 
 
 
+- FileName:pipe_Basic.go
+#+begin_src go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"log"
+	"os"
+)
+
+func main() {
+	pr, pw, err := os.Pipe()
+	if err != nil {
+		log.Fatalf("Create os.Pipe got error: %s\n", err)
+	}
+	oldStdout := os.Stdout
+
+	os.Stdout = pw
+
+	go func() {
+		defer pw.Close()
+		fmt.Println("Print to stdout")
+
+	}()
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(pr)
+
+	os.Stdout = oldStdout
+
+	fmt.Println("Captured String: ", buf.String())
+
+}
+
+#+end_src
+
+
+
+
